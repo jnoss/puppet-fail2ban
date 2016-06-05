@@ -14,7 +14,7 @@ class fail2ban (
   $mta              = 'sendmail',
   $protocol         = 'tcp',
   $action           = '%(action_)s',
-  $purge_jail_dot_d = true
+  $purge_jail_dot_d = true,
   $iptables_blocktype = 'REJECT --reject-with icmp-port-unreachable',
 ) {
 
