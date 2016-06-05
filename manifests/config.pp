@@ -84,7 +84,7 @@ class fail2ban::config {
     owner   => 'root',
     group   => 0,
     mode    => '0644',
-    content => template('puppet:///modules/fail2ban/iptables-common.local.erb'),
+    content => template('fail2ban/iptables-common.local.erb'),
   }
 
 }
