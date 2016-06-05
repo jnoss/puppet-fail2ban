@@ -15,6 +15,7 @@ class fail2ban (
   $protocol         = 'tcp',
   $action           = '%(action_)s',
   $purge_jail_dot_d = true
+  $iptables_blocktype = 'REJECT --reject-with icmp-port-unreachable',
 ) {
 
   anchor { 'fail2ban::begin': } ->

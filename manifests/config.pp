@@ -14,6 +14,7 @@ class fail2ban::config {
   $mta = $fail2ban::mta
   $protocol = $fail2ban::protocol
   $action = $fail2ban::action
+  $iptables_blocktype = $fail2ban::iptables_blocktype
 
   $jail_template_name = $::osfamily ? {
     'Debian' => "${module_name}/debian_jail.conf.erb",
@@ -75,6 +76,15 @@ class fail2ban::config {
       group => 0,
       mode  => '0644';
     }
+  }
+
+  # iptables-common overrides to allow to specify iptables block action
+  file { '/etc/fail2ban/action.d/iptables-common.local':
+    ensure  => present,
+    owner   => 'root',
+    group   => 0,
+    mode    => '0644',
+    content => template('puppet:///modules/fail2ban/iptables-common.local.erb'),
   }
 
 }
